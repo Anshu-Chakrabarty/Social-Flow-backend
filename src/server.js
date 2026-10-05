@@ -54,7 +54,7 @@ app.get('/api/health', (req, res) => {
   const payload = {
     status: 'online',
     service: 'SocialFlow Backend API Server',
-    version: '2.8.0 (Drive + BYOK generate + upload)',
+    version: '2.8.1 (Drive + BYOK generate + upload)',
     videoMethods: ['drive_pointer', 'client_api_key', 'direct_upload'],
     timestamp: new Date().toISOString(),
     platforms: ['facebook', 'instagram', 'youtube', 'x', 'linkedin', 'drive'],
@@ -67,6 +67,13 @@ app.get('/api/health', (req, res) => {
     payload.oauth = {
       appUrl: getAppUrl(),
       frontendUrl: getFrontendUrl(),
+      googleClientId: process.env.GOOGLE_CLIENT_ID || '',
+      googleRedirectUris: [
+        YOUTUBE_CONFIG.redirectUri,
+        DRIVE_CONFIG.redirectUri,
+        `${getAppUrl()}/auth/youtube/callback`,
+        `${getAppUrl()}/auth/drive/callback`,
+      ].filter((value, index, list) => value && list.indexOf(value) === index),
       facebookRedirect: FACEBOOK_CONFIG.redirectUri,
       instagramRedirect: INSTAGRAM_CONFIG.redirectUri,
       youtubeRedirect: YOUTUBE_CONFIG.redirectUri,
