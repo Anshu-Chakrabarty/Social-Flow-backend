@@ -21,25 +21,27 @@ services:
       - key: GEMINI_VIDEO_MODEL
         value: veo-3.1-fast-generate-preview
       - key: APP_URL
-        value: https://socialflow-api.onrender.com
+        value: https://socialflow-api-7ulz.onrender.com
       - key: FRONTEND_URL
-        value: https://socialflow-web.onrender.com
+        value: https://socialflow-web-rc3q.onrender.com
+      - key: DRIVE_REDIRECT_URI
+        value: https://socialflow-api-7ulz.onrender.com/auth/drive/callback
       - key: SUPABASE_URL
         value: https://kettuzklxorjkydoqcqr.supabase.co
       - key: SUPABASE_ANON_KEY
         value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtldHR1emtseG9yamt5ZG9xY3FyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEyODQ2MjEsImV4cCI6MjA3Njg2MDYyMX0.cnZri4VB7njerX8lZ6H8tlWcItEC9fn1qcaCkTiZS58
       - key: GOOGLE_CLIENT_ID
-        value: 282450834667-746f0noc03gfpsqg5sc5edji9eoutilu.apps.googleusercontent.com
+        value: 875508462276-sns0llc50g7e6smlkuq4t35ukcj2dadt.apps.googleusercontent.com
       - key: YOUTUBE_REDIRECT_URI
-        value: https://socialflow-api.onrender.com/auth/youtube/callback
+        value: https://socialflow-api-7ulz.onrender.com/auth/youtube/callback
       - key: META_REDIRECT_URI
-        value: https://socialflow-api.onrender.com/api/platforms/facebook/oauth/callback
+        value: https://socialflow-api-7ulz.onrender.com/api/platforms/facebook/oauth/callback
       - key: INSTAGRAM_REDIRECT_URI
-        value: https://socialflow-api.onrender.com/api/platforms/instagram/oauth/callback
+        value: https://socialflow-api-7ulz.onrender.com/api/platforms/instagram/oauth/callback
       - key: X_REDIRECT_URI
-        value: https://socialflow-api.onrender.com/api/platforms/x/oauth/callback
+        value: https://socialflow-api-7ulz.onrender.com/api/platforms/x/oauth/callback
       - key: LINKEDIN_REDIRECT_URI
-        value: https://socialflow-api.onrender.com/api/platforms/linkedin/oauth/callback
+        value: https://socialflow-api-7ulz.onrender.com/api/platforms/linkedin/oauth/callback
       - key: GEMINI_API_KEY
         sync: false
       - key: GOOGLE_CLIENT_SECRET

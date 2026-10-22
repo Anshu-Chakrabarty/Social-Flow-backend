@@ -9,6 +9,16 @@ function isLocalHost(url) {
   return !url || /localhost|127\.0\.0\.1/i.test(url);
 }
 
+function isStaleFrontend(url) {
+  const host = hostOf(url);
+  return host === 'socialflow-web.onrender.com';
+}
+
+function isStaleApi(url) {
+  const host = hostOf(url);
+  return host === 'socialflow-api.onrender.com';
+}
+
 export function isProduction() {
   return process.env.NODE_ENV === 'production' || Boolean(process.env.RENDER);
 }
@@ -27,8 +37,8 @@ export function getAppUrl() {
   if (isProduction() && renderUrl && !isLocalHost(renderUrl)) {
     return renderUrl;
   }
-  if (isProduction() && isLocalHost(configured)) {
-    return PROD_API;
+  if (isProduction() && (isLocalHost(configured) || isStaleApi(configured))) {
+    return renderUrl || PROD_API;
   }
   return configured || renderUrl || 'http://localhost:5000';
 }
@@ -40,7 +50,7 @@ export function getFrontendUrl(req) {
   }
 
   const configured = stripSlash(process.env.FRONTEND_URL);
-  if (isProduction() && isLocalHost(configured)) {
+  if (isProduction() && (isLocalHost(configured) || isStaleFrontend(configured))) {
     return PROD_FRONTEND;
   }
   return configured || 'http://localhost:4000';
