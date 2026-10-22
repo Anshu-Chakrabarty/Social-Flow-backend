@@ -21,11 +21,11 @@ services:
       - key: GEMINI_VIDEO_MODEL
         value: veo-3.1-fast-generate-preview
       - key: APP_URL
-        value: https://socialflow-api-7ulz.onrender.com
+        value: https://social-flow-backend.onrender.com
       - key: FRONTEND_URL
-        value: https://socialflow-web-rc3q.onrender.com
+        value: https://social-flow.onrender.com
       - key: DRIVE_REDIRECT_URI
-        value: https://socialflow-api-7ulz.onrender.com/auth/drive/callback
+        value: https://social-flow-backend.onrender.com/auth/drive/callback
       - key: SUPABASE_URL
         value: https://kettuzklxorjkydoqcqr.supabase.co
       - key: SUPABASE_ANON_KEY
@@ -33,15 +33,15 @@ services:
       - key: GOOGLE_CLIENT_ID
         value: 875508462276-sns0llc50g7e6smlkuq4t35ukcj2dadt.apps.googleusercontent.com
       - key: YOUTUBE_REDIRECT_URI
-        value: https://socialflow-api-7ulz.onrender.com/auth/youtube/callback
+        value: https://social-flow-backend.onrender.com/auth/youtube/callback
       - key: META_REDIRECT_URI
-        value: https://socialflow-api-7ulz.onrender.com/api/platforms/facebook/oauth/callback
+        value: https://social-flow-backend.onrender.com/api/platforms/facebook/oauth/callback
       - key: INSTAGRAM_REDIRECT_URI
-        value: https://socialflow-api-7ulz.onrender.com/api/platforms/instagram/oauth/callback
+        value: https://social-flow-backend.onrender.com/api/platforms/instagram/oauth/callback
       - key: X_REDIRECT_URI
-        value: https://socialflow-api-7ulz.onrender.com/api/platforms/x/oauth/callback
+        value: https://social-flow-backend.onrender.com/api/platforms/x/oauth/callback
       - key: LINKEDIN_REDIRECT_URI
-        value: https://socialflow-api-7ulz.onrender.com/api/platforms/linkedin/oauth/callback
+        value: https://social-flow-backend.onrender.com/api/platforms/linkedin/oauth/callback
       - key: GEMINI_API_KEY
         sync: false
       - key: GOOGLE_CLIENT_SECRET

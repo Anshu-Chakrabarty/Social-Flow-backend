@@ -1,5 +1,5 @@
-const PROD_FRONTEND = 'https://socialflow-web-rc3q.onrender.com';
-const PROD_API = 'https://socialflow-api-7ulz.onrender.com';
+const PROD_FRONTEND = 'https://social-flow.onrender.com';
+const PROD_API = 'https://social-flow-backend.onrender.com';
 
 function stripSlash(url) {
   return String(url || '').trim().replace(/\/$/, '');
@@ -11,12 +11,18 @@ function isLocalHost(url) {
 
 function isStaleFrontend(url) {
   const host = hostOf(url);
-  return host === 'socialflow-web.onrender.com';
+  return [
+    'socialflow-web.onrender.com',
+    'socialflow-web-rc3q.onrender.com',
+  ].includes(host);
 }
 
 function isStaleApi(url) {
   const host = hostOf(url);
-  return host === 'socialflow-api.onrender.com';
+  return [
+    'socialflow-api.onrender.com',
+    'socialflow-api-7ulz.onrender.com',
+  ].includes(host);
 }
 
 export function isProduction() {

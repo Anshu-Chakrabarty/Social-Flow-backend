@@ -54,7 +54,7 @@ app.get('/api/health', (req, res) => {
   const payload = {
     status: 'online',
     service: 'SocialFlow Backend API Server',
-    version: '2.8.2 (live rc3q URLs + Drive + BYOK + upload)',
+    version: '2.8.3 (Medicred Render + Drive + BYOK + upload)',
     videoMethods: ['drive_pointer', 'client_api_key', 'direct_upload'],
     timestamp: new Date().toISOString(),
     platforms: ['facebook', 'instagram', 'youtube', 'x', 'linkedin', 'drive'],
