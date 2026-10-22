@@ -14,7 +14,7 @@ function clamp(value, min, max) {
 }
 
 function normalizeBrief(input = {}) {
-  const script = String(input.script || input.prompt || '').trim();
+  const script = String(input.script || input.prompt || input.topic || input.idea || input.title || '').trim();
   const platforms = Array.isArray(input.platforms) && input.platforms.length
     ? input.platforms.map((item) => String(item).toLowerCase())
     : ['youtube', 'instagram', 'facebook'];

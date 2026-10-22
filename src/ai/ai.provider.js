@@ -130,7 +130,9 @@ async function callGeminiContent({
       if (!res.ok) {
         lastError = mapHttpError(res.status, raw);
         logger.warn(`Gemini ${nextModel} HTTP ${res.status}: ${raw.slice(0, 220)}`);
-        if (res.status === 404 || res.status === 429) continue;
+        if ([404, 429, 500, 503].includes(res.status) || /high demand|unavailable|overloaded/i.test(raw)) {
+          continue;
+        }
         throw lastError;
       }
 
@@ -148,7 +150,7 @@ async function callGeminiContent({
     } catch (err) {
       clearTimeout(timeoutId);
       lastError = wrapProviderError(err);
-      if (err instanceof AiApiError && err.statusCode && ![404, 429].includes(err.statusCode)) {
+      if (err instanceof AiApiError && err.statusCode && ![404, 429, 500, 503].includes(err.statusCode)) {
         throw lastError;
       }
     }
