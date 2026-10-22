@@ -1,4 +1,4 @@
-const PROD_FRONTEND = 'https://social-flow.onrender.com';
+const PROD_FRONTEND = 'https://social-flow-5lf5.onrender.com';
 const PROD_API = 'https://social-flow-backend.onrender.com';
 
 function stripSlash(url) {
@@ -14,6 +14,7 @@ function isStaleFrontend(url) {
   return [
     'socialflow-web.onrender.com',
     'socialflow-web-rc3q.onrender.com',
+    'social-flow.onrender.com',
   ].includes(host);
 }
 

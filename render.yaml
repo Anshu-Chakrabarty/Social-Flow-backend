@@ -23,7 +23,7 @@ services:
       - key: APP_URL
         value: https://social-flow-backend.onrender.com
       - key: FRONTEND_URL
-        value: https://social-flow.onrender.com
+        value: https://social-flow-5lf5.onrender.com
       - key: DRIVE_REDIRECT_URI
         value: https://social-flow-backend.onrender.com/auth/drive/callback
       - key: SUPABASE_URL
