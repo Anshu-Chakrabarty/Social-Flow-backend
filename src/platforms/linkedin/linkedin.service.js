@@ -25,7 +25,7 @@ export class LinkedInService extends BasePlatformService {
         status: 'connected'
       };
 
-      saveConnectedAccount('linkedin', accountData);
+      await saveConnectedAccount('linkedin', accountData);
       logger.info('Connected LinkedIn account successfully', { handle: accountData.handle });
       return { success: true, account: accountData };
     } catch (err) {

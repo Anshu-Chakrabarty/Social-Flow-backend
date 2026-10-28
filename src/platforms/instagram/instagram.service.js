@@ -79,7 +79,7 @@ export class InstagramService extends BasePlatformService {
         status: 'connected'
       };
 
-      saveConnectedAccount('instagram', accountData);
+      await saveConnectedAccount('instagram', accountData);
       logger.info('Connected Instagram account successfully', { handle: accountData.handle, igAccountId });
       return { success: true, account: accountData };
     } catch (err) {

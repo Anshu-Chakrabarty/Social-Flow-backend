@@ -25,7 +25,7 @@ export class XService extends BasePlatformService {
         status: 'connected'
       };
 
-      saveConnectedAccount('x', accountData);
+      await saveConnectedAccount('x', accountData);
       logger.info('Connected X account successfully', { handle: accountData.handle });
       return { success: true, account: accountData };
     } catch (err) {

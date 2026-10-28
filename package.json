@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node --watch src/server.js",
     "start": "node src/server.js",
-    "test": "node --test src/platforms/drive/drive.merge.test.js src/ai/ai.keys.test.js",
+    "test": "node --test src/platforms/drive/drive.merge.test.js src/ai/ai.keys.test.js src/shared/utils/dbHelpers.test.js",
     "postinstall": "node node_modules/ffmpeg-static/install.js"
   },
   "engines": {

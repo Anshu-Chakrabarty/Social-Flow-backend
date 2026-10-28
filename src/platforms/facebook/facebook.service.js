@@ -60,7 +60,7 @@ export class FacebookService extends BasePlatformService {
         status: 'connected'
       };
 
-      saveConnectedAccount('facebook', accountData);
+      await saveConnectedAccount('facebook', accountData);
       logger.info('Connected Facebook account successfully', { name: accountName });
       return { success: true, account: accountData };
     } catch (err) {

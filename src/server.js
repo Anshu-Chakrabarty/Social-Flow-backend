@@ -8,6 +8,7 @@ import { FACEBOOK_CONFIG } from './platforms/facebook/facebook.config.js';
 import { INSTAGRAM_CONFIG } from './platforms/instagram/instagram.config.js';
 import { YOUTUBE_CONFIG } from './platforms/youtube/youtube.config.js';
 import { DRIVE_CONFIG } from './platforms/drive/drive.config.js';
+import { getPersistStatus } from './shared/utils/dbHelpers.js';
 import driveRouter from './platforms/drive/drive.router.js';
 import authRoutes from './routes/auth.js';
 import postsRoutes from './routes/posts.js';
@@ -50,11 +51,11 @@ app.get('/', (_req, res) => {
   res.json({ status: 'online', service: 'socialflow-api' });
 });
 
-app.get('/api/health', (req, res) => {
+app.get('/api/health', async (req, res) => {
   const payload = {
     status: 'online',
     service: 'SocialFlow Backend API Server',
-    version: '2.8.4 (Gemini key + topic video + busy fallback)',
+    version: '2.8.5 (persistent social connects)',
     videoMethods: ['drive_pointer', 'client_api_key', 'direct_upload'],
     timestamp: new Date().toISOString(),
     platforms: ['facebook', 'instagram', 'youtube', 'x', 'linkedin', 'drive'],
@@ -87,6 +88,7 @@ app.get('/api/health', (req, res) => {
     payload.oauth = { error: err.message };
   }
 
+  payload.persist = await getPersistStatus();
   res.status(200).json(payload);
 });
 

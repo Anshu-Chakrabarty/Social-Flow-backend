@@ -3,8 +3,6 @@ import { uploadYouTubeVideo } from './youtube.publisher.js';
 import { buildYouTubeAuthUrl, exchangeCodeForTokens, fetchYouTubeChannelProfile } from './youtube.oauth.js';
 import { createLogger } from '../../middleware/logger.js';
 import { saveConnectedAccount, getAccountCredentials } from '../../shared/utils/dbHelpers.js';
-import { encryptToken } from '../../shared/utils/encryption.js';
-import { supabase } from '../../shared/utils/supabase.js';
 
 const logger = createLogger('YouTubeService');
 
@@ -25,10 +23,6 @@ export class YouTubeService extends BasePlatformService {
       // 2. Fetch channel profile from YouTube API
       const profile = await fetchYouTubeChannelProfile(tokenData.accessToken);
 
-      // 3. Encrypt tokens for secure storage
-      const encryptedAccessToken = encryptToken(tokenData.accessToken);
-      const encryptedRefreshToken = tokenData.refreshToken ? encryptToken(tokenData.refreshToken) : null;
-
       const accountData = {
         id: profile.channelId,
         name: profile.title,
@@ -40,33 +34,7 @@ export class YouTubeService extends BasePlatformService {
         refreshToken: tokenData.refreshToken
       };
 
-      // 4. Save / Upsert connection details into Supabase
-      try {
-        const { error: dbError } = await supabase.from('connected_accounts').upsert({
-          user_id: 'user_1',
-          platform: 'youtube',
-          platform_account_id: profile.channelId,
-          account_name: profile.title,
-          handle: profile.handle,
-          avatar_url: profile.avatar,
-          access_token: encryptedAccessToken,
-          refresh_token: encryptedRefreshToken,
-          follower_count: profile.subscriberCount,
-          status: 'connected',
-          updated_at: new Date().toISOString()
-        }, { onConflict: 'user_id,platform' });
-
-        if (dbError) {
-          logger.warn('Supabase upsert notice:', dbError.message);
-        } else {
-          logger.info('Saved YouTube connection to Supabase table connected_accounts successfully');
-        }
-      } catch (sbErr) {
-        logger.warn('Supabase database operation notice:', sbErr.message);
-      }
-
-      // 5. Sync with internal dbHelpers store
-      saveConnectedAccount('youtube', accountData);
+      await saveConnectedAccount('youtube', accountData);
 
       logger.info('Connected YouTube channel successfully via OAuth code exchange', { channelId: profile.channelId, handle: profile.handle });
       return { success: true, account: accountData };
@@ -86,7 +54,7 @@ export class YouTubeService extends BasePlatformService {
         status: 'connected'
       };
 
-      saveConnectedAccount('youtube', accountData);
+      await saveConnectedAccount('youtube', accountData);
       logger.info('Connected YouTube channel successfully', { handle: accountData.handle });
       return { success: true, account: accountData };
     } catch (err) {
